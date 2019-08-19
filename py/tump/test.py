@@ -1,0 +1,17 @@
+from tkinter import *
+root = Tk()
+root.title("网易云音乐")
+root.geometry("800x600")
+root.geometry("+250+100")
+label = Label(root,text="请输入要下载的内容:",font=('华文行楷',25))
+label.grid(row=0,column=0)
+entry =Entry(root,font=('微软雅黑',25))
+entry.grid(row=0,column=1)
+text = Listbox(root,font=('微软雅黑',30),width=45,height=10)
+text.grid(row=1,columnspan=2)
+button = Button(root,text="开始下载",font=('微软雅黑',30))
+button.grid(row=2,column=0,sticky=W)
+button1 = Button(root,text="退出",font=('微软雅黑',30))
+button1.grid(row=2,column=1,sticky=E)
+
+root.mainloop()

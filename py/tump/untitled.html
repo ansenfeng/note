@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.wrap{
+			width: 500px;
+			height: 700px;
+			border:1px solid ;
+			margin:0 auto;
+			background-color:#DBEBFD;
+		}
+		.time{
+			display: inline-block;
+			margin:20px;
+			font-size: 20px;
+		}
+		.score{
+			display: inline-block;
+			font-size: 20px;
+			margin:20px;
+			margin-left: 200px;
+		}
+		input{
+			display: block;
+			background-color: #FDBAEC;
+			height: 40px;
+			width: 80px;
+			margin:0 auto;
+			border-radius: 5px;
+			outline: none;
+		}
+		.content{
+			width: 90%;
+			margin:50px auto;
+			height: 530px;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+ 
+		}
+		.content>img{
+			width: 100%;
+ 
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="time">
+			剩余时间:60
+		</div>
+		<div class="score">
+			分数:0
+		</div>
+		<input type="button" value="开始">
+		<div class="content">
+			<img src="./1.png" alt="">
+		</div>
+ 
+	</div>
+</body>
+<script>
+	//获取元素
+	var content = document.querySelector(".content");
+	var inp = document.querySelector("input");
+	var score = document.querySelector(".score");
+	var time = document.querySelector(".time");
+ 
+	//定义行数的初始值
+	var d = 2;
+	//定义成绩
+	var score1 = 0;
+	var time1 = 60;
+	var timer;
+	inp.onclick = function(){
+		find();
+		inp.disabled=true;
+ 
+		timer = setInterval(function(){
+		time1--;	
+		time.innerHTML="剩余时间:"+time1;
+			if(time1<=0){			
+				clearInterval(timer);
+				alert("成绩是:"+score1);
+				score.innerHTML="分数:00";
+				time.innerHTML="剩余时间:60";
+				inp.disabled=false;
+				time1=60;
+				score1=0;
+				d=2;			
+				content.innerHTML="";
+				var img2 = document.createElement("img");
+			 	img2.style.height="400px";
+			 	img2.style.width="400px";
+			 	img2.src="./1.png";
+			 	content.appendChild(img2);				
+			}
+		},1000);
+	}
+ 
+	//主函数
+	function find(){
+		//随机颜色
+		var  r = parseInt(Math.random()*256);
+		var  g = parseInt(Math.random()*256);
+		var  b = parseInt(Math.random()*256);
+		//清空原来的内容
+		content.innerHTML="";	
+		//循环生成n行n列的块
+		 for(var i=0;i<d*d;i++){
+		 	//定义一个柯震东的图片
+		 	var img = document.createElement("img");
+		 	//为柯震东的图片设置样式
+		 	img.style.width=95/d+"%";
+		 	img.style.height=95/d+"%";
+		 	img.style.backgroundColor="rgb("+r+","+g+","+b+")";
+		 	img.src="./1.png";
+		 	//将柯震东的图片写入父级content中
+		 	content.appendChild(img);
+		 }
+		 	//随机一个下标
+		 	var xb = parseInt(Math.random()*(d*d));
+ 
+			//定义一个房祖名的图片
+		    img1 = document.createElement("img");
+		    // 为房祖名的图片设置样式
+		 	img1.style.width=95/d+"%";
+		 	img1.style.height=95/d+"%";
+		 	img1.style.backgroundColor="rgb("+r+","+g+","+b+")";
+		 	img1.src="./2.png";
+		 	//将房祖名的图片写入到父级content中
+		 	content.appendChild(img);
+		 //换房祖名和柯震东的图片
+		 var change = content.children;
+		 content.replaceChild(img1,change[xb]); 
+		  //选择正确   
+    	img1.onclick=function(){
+    		if(d<9){
+    			d++;
+    		}
+    		score1=score1+10;
+    		console.log(score1);
+    		score.innerHTML="分数:"+score1;
+    		find();
+    	}
+		
+	}
+ 
+</script>
+</html>
