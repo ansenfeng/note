@@ -36,6 +36,6 @@ DROP TABLE table_name ;
     修改：alter table test1 comment '修改后的表的注释';
     修改字段：alter table test1 modify column field_name int comment '修改后的字段注释'; 
     查看：show  create  table  test1;
-    show  full  columns  from  test1;
-    select * from TABLES where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
-    select * from COLUMNS where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
+         show  full  columns  from  test1;
+         select * from TABLES where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
+         select * from COLUMNS where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
