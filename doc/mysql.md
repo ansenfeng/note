@@ -30,12 +30,12 @@ DROP TABLE table_name ;
             而delete删除以后，Identity依旧是接着被删除的最近的那一条记录ID加1后进行记录。
     如果只需删除表中的部分记录，只能使用DELETE语句配合where条件。 DELETE FROM gk_portal  WHERE…
 #注释
-       create table test1 ( 
-            field_name int comment '字段的注释' 
-        )comment='表的注释'; 
-        修改：alter table test1 comment '修改后的表的注释';
-        修改字段：alter table test1 modify column field_name int comment '修改后的字段注释'; 
-        查看：show  create  table  test1;
-           show  full  columns  from  test1;
-           select * from TABLES where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
-           select * from COLUMNS where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
+> create table test1 ( 
+> field_name int comment '字段的注释' 
+> )comment='表的注释'; 
+> 修改：alter table test1 comment '修改后的表的注释';
+> 修改字段：alter table test1 modify column field_name int comment '修改后的字段注释'; 
+> 查看：show  create  table  test1;
+> show  full  columns  from  test1;
+> select * from TABLES where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
+> select * from COLUMNS where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
