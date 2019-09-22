@@ -1,3 +1,21 @@
+#建立表
+  sql ="""
+    CREATE TABLE if not exists `beike40`(
+    `id`    INT UNSIGNED AUTO_INCREMENT,
+    `name`    VARCHAR(255)  NULL,
+    `address` VARCHAR(255)  NULL,
+    `area`    VARCHAR(255)  NULL,
+    `price1` VARCHAR(255)  NULL,
+    `price2` VARCHAR(255)  NULL,
+    `ting`   VARCHAR(255)  NULL,
+    `lv`     VARCHAR(255)  NULL,
+    `tm2`    VARCHAR(255)  NULL,
+    `tm`    VARCHAR(255)  NULL,
+    `url`    VARCHAR(255) NULL,
+    `Time1` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    """
 # 删除表
 DROP TABLE table_name ;
 # 清空表
