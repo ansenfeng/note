@@ -1,6 +1,6 @@
-#删除表
+# 删除表
 DROP TABLE table_name ;
-#清空表
+# 清空表
   truncate gk_portal;  
   delete from  gk_portal;
      这两者都是将gk_portal表中数据清空，不过也是有区别的，如下：
