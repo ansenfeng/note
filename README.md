@@ -25,8 +25,7 @@ github创建文件夹方法 create new file +"/"+一个文件
 	
 # python
 
-	
-	format
++ format
 	print("网站名：{name}, 地址 {url}".format(name="菜鸟教程", url="www.runoob.com"))
 	print("网站名：{}, 地址 {}".format("菜鸟教程", "www.runoob.com"))
 	等价 
@@ -36,11 +35,11 @@ github创建文件夹方法 create new file +"/"+一个文件
 	import os
 	print(os.listdir(r'/Library/WebServer/Documents/07'))
 	
-	print
++ print
 	print两个参数 sep 间隔，end结尾 
 	print(a,b,c,sep='......')
 	print(x,y,z,end='\n')
-	数据截取
++ 数据切片
 	str = ‘0123456789’
 	print str[0:3] #截取第一位到第三位的字符
 	print str[:] #截取字符串的全部字符
@@ -53,7 +52,7 @@ github创建文件夹方法 create new file +"/"+一个文件
 	print str[-3:] #截取倒数第三位到结尾
 	print str[:-5:-3] #逆序截取，具体啥意思没搞明白？
 	
-	if __name__ == '__main__':#判断是否自己，自己文件是运行，被引入时不执行。
++ if __name__ == '__main__':#判断是否自己，自己文件是运行，被引入时不执行。
 	
 	print(locals()) 局部变量
 	print(globals()) 全局变量
