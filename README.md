@@ -30,7 +30,7 @@ github创建文件夹方法 create new file +"/"+一个文件
 	 	print("网站名：{}, 地址 {}".format("菜鸟教程", "www.runoob.com"))
 	 	等价   
 		format 还可以使用字典和列表。
-	 列出目录列表  
+	列出目录列表  
 	 	import os
 	 	print(os.listdir(r'/Library/WebServer/Documents/07'))
 	
@@ -56,11 +56,13 @@ github创建文件夹方法 create new file +"/"+一个文件
 		print(globals()) 全局变量
 # 面向对象
 	class MyClass:#方法名称
+	
 	    test = 'test1'#自身属性 变量。
+	    
 	    def __init__(self, realpart, imagpart):#自运行方法
 	        self.r = realpart
 	        self.i = imagpart
-	        print(self.r,self.i)
+	        print(self.r,self.i)#自动运行动作
 	    def f(self):#内置方法1
 	        return 'hello world',self.r,self.i
 	    def a(self,a): #内置方法2
@@ -69,11 +71,14 @@ github创建文件夹方法 create new file +"/"+一个文件
 	    	return(b)
 	    def c(self,c):#内置方法4
 	    	return(c)
-	x = MyClass('输入a','输入b') #实力化时候自动运行一次
-	print("MyClass 类的属性 i 为：", x.test)#text是变量（也叫属性）
+		
+	x = MyClass('输入a','输入b') #实例化，并自动运行一次
+	print("MyClass 类的属性 i 为：", x.test)#text是值（也叫属性）
 	print("MyClass 类的方法 f 输出为：", x.f())#f是方法
 	print(x.a('texta'),x.b('textb'),x.c('textc'))#方法2
+	
 	y = MyClass(12,13)#自动运行
 	print('y输出',y.r,y.i)#
+	
 	e = MyClass(1.1,2.2)#自动运行
 	f = MyClass(2.2,3.3)#自动运行
