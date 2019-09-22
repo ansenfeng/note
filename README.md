@@ -22,19 +22,25 @@ github创建文件夹方法 create new file +"/"+一个文件
 	+ re.search('^[0-9]{3,4}-[0-9]{7,9}$','135-1234567',re.S)  检测是否电话号
 	+ re.search('^http//www\.(.*?)\.com$','http//www.baidu.com')  只取括号部分
 	+ print(r.group()) 结果例子
-	
+
+# 一级标题  
+## 二级标题  
+### 三级标题  
+#### 四级标题  
+##### 五级标题  
+###### 六级标题
 # python
 
-	## format
+	format  
 	 print("网站名：{name}, 地址 {url}".format(name="菜鸟教程", url="www.runoob.com"))
 	 print("网站名：{}, 地址 {}".format("菜鸟教程", "www.runoob.com"))
-	 等价 
-	## format 还可以使用字典和列表。
-	 列出目录列表
+	 等价   
+	format 还可以使用字典和列表。
+	 列出目录列表  
 	 import os
 	 print(os.listdir(r'/Library/WebServer/Documents/07'))
 	
-	##print
+	print  
 	print两个参数 sep 间隔，end结尾 
 	print(a,b,c,sep='......')
 	print(x,y,z,end='\n')
