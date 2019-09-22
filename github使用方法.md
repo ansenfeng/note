@@ -1,5 +1,4 @@
-github创建文件夹方法 create new file +"/"+一个文件
-
+    github创建文件夹方法 create new file +"/"+一个文件
     删除库：settings 往下拉到最后 Danger Zone 然后，Delete this repository，输入一遍库名字，ok
 
 # 一、标题写法：
