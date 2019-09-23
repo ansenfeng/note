@@ -39,3 +39,9 @@ DROP TABLE table_name ;
          show  full  columns  from  test1;
          select * from TABLES where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
          select * from COLUMNS where TABLE_SCHEMA='my_db' and TABLE_NAME='test1' \G
+
+# 统计重复信息
+    SELECT COUNT(*) as repetitions, name, nums #name,nums列 
+    FROM beike_xiaoqu_08 #表名
+    GROUP BY name, nums  #列名
+    HAVING repetitions > 1;
