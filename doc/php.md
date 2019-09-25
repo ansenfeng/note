@@ -11,16 +11,12 @@
 
     <?php 
     require_once dirname(__FILE__).'/con/config.php';
-    		# php <php
+    
     		$mysqli = new mysqli($sql_host,$sql_user,$sql_passwd,$sql_database);  # 主机 用户名。密码  数据库名
-    
-    		
     			#判断是否连接成功
-    
-    		if ($mysqli->connect_error) {
-    
-    			# 只要不为0，就要是连接失败
-    		  die(connect_error);
+    	if ($mysqli->connect_error) {
+    	# 只要不为0，就要是连接失败
+    	die(connect_error);
     		}
     		#  $mysqli->query +sql 语句
     		
