@@ -90,3 +90,6 @@ python学习笔记</br>
 	
 	e = MyClass(1.1,2.2)#自动运行
 	f = MyClass(2.2,3.3)#自动运行
+# 列表
+	jieguo = list(set(liebiao))#列表去重复
+	butong = set(str1).symmetric_difference(set(str2))#列表比较
