@@ -1,3 +1,11 @@
+# 
+    行列翻转  df.T 
+    df2.replace(r'.*?万','', inplace=True,regex=True)
+    #表达式，替换内容，写入原数据，表达式和字符切换
+    df2.replace(r'[()]','', inplace=True,regex=True)  
+    df2=df.copy()#复制表
+    df2['Unnamed: 21']='-'#改变列的值
+    df2.rename(columns={'Unnamed: 21':'tr1', 'Unnamed: 42':'tr2'}, inplace = True)#改变列名   
 # 导入数据：
       
       pd.read_csv(filename,dtype='str')：从CSV文件导入数据,读取类型
@@ -114,3 +122,45 @@
     df2[['gdp1']]=df2['date'].str.extract('(\d.*?亿)',expand=False)
     df2[['gdp2']]=df2['date'].str.extract('\((.*?)\)',expand=False)
     df2[['name2']]=df2['name'].str.extract('(\d\d\d\d)',expand=False)
+# 杂项
+      df1=pd.DataFrame({"A":[1,'abc',3,4],"B":[5,6,'ddf',8],"C":[1,1,1,1]})
+      随机数组建立
+      dates=pd.date_range('20130101', periods=6)
+      df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list('ABCD'))
+      
+      for i in range(0, len(df)):#输出列i 表示行
+          print (df.iloc[i]['A'], df.iloc[i]['B'])
+      for index, row in df.iterrows():
+    print(row) # 输出每行的索引值
+    
+    
+    
+    idx = pd.Index([' jack', 'jill ', ' jesse ', 'frank'])
+     dfsql=pd.read_sql(sql,engine)
+     print(idx.str.strip())
+     print(idx.str.lstrip())
+     print(idx.str.rstrip())
+     df = pd.DataFrame(np.random.randn(3, 2), columns=[' Column A ', ' Column B '], index=range(3))
+     print(df.columns.str.strip())
+     print(df.columns.str.lower())
+     df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')#删除前后空格，中间用_替换
+     s2 = pd.Series(['a_b_c', 'c_d_e', np.nan, 'f_g_h'])
+     print(s2.str.split('_'))
+     print(s2.str.split('_').str.get(0))
+     print(s2.str.split('_').str[1])
+     print(s2.str.split('_', expand=True))
+     print(s2.str.split('_', expand=True, n=1)) #拆分数量
+     print(s2.str.rsplit('_', expand=True, n=1))#从尾往前取
+     s3 = pd.Series(['A', 'B', 'C', 'Aaba', 'Baca','', np.nan, 'CABA', 'dog', 'cat'])
+     print(s3.str.replace('^.a|dog', 'XX-XX ', case=False))
+     print(s3)
+     dollars = pd.Series(['12', '-$10', '$10,000'])
+     print(dollars.str.replace('$', ''))
+     print(dollars.str.replace(r'-\$', '-'))
+     print(pd.Series(['f.o(abc)', 'fuz', np.nan]).str.replace('f.', '内容', regex=False))
+     print(pd.Series(['f.o(abc)', 'fuz', np.nan]).str.replace(r'\((.*?)\)', r'\((.*?)\)', regex=True))
+     pat = r"(?P<one>\w+) (?P<two>\w+) (?P<three>\w+)"
+     repl = lambda m: m.group('two').swapcase()
+     print(pd.Series(['One Two Three', 'Foo Bar Baz']).str.replace(pat, repl))
+     s1 = pd.Series(['Mouse', 'dog', 'house and parrot', '23', np.NaN])
+     print(s1.str.contains('og', regex=False))    
