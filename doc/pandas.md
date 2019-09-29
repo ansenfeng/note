@@ -1,4 +1,13 @@
 # 
+    删除空行
+    df = df.dropna()
+    # 可以通过axis参数来删除含有空数据的全部列
+    df = df.dropna(axis=1)
+    
+    # 可以通过subset参数来删除在age和sex中含有空数据的全部行
+    df = df.dropna(subset=["age", "sex"])
+    df = df.dropna(subset=['age', 'body','home.dest'])
+    
     行列翻转  df.T 
     df2.replace(r'.*?万','', inplace=True,regex=True)
     #表达式，替换内容，写入原数据，表达式和字符切换
