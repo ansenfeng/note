@@ -68,3 +68,81 @@ ps -ef|grep mysql
     4、查看指定数据库的某个表的大小
     比如查看数据库home中 members 表的大小
     select concat(round(sum(data_length/1024/1024),2),'MB') as data from tables where table_schema='home' and   table_name='members';
+
+# import pymysql
+    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='diy',charset='utf8')
+    cursor = conn.cursor()
+    sql ="""
+    CREATE TABLE if not exists `IBRD_gdp_T`(
+    `id`    INT UNSIGNED AUTO_INCREMENT,
+    `country`    VARCHAR(255)  NULL,
+    `code` VARCHAR(255)  NULL,
+    `1960-12-31` double  NULL,
+    `1961-12-31` double  NULL,
+    `1962-12-31` double  NULL,
+    `1963-12-31` double  NULL,
+    `1964-12-31` double  NULL,
+    `1965-12-31` double  NULL,
+    `1966-12-31` double  NULL,
+    `1967-12-31` double  NULL,
+    `1968-12-31` double  NULL,
+    `1969-12-31` double  NULL,
+    `1970-12-31` double  NULL,
+    `1971-12-31` double  NULL,
+    `1972-12-31` double  NULL,
+    `1973-12-31` double  NULL,
+    `1974-12-31` double  NULL,
+    `1975-12-31` double  NULL,
+    `1976-12-31` double  NULL,
+    `1977-12-31` double  NULL,
+    `1978-12-31` double  NULL,
+    `1979-12-31` double  NULL,
+    `1980-12-31` double  NULL,
+    `1981-12-31` double  NULL,
+    `1982-12-31` double  NULL,
+    `1983-12-31` double  NULL,
+    `1984-12-31` double  NULL,
+    `1985-12-31` double  NULL,
+    `1986-12-31` double  NULL,
+    `1987-12-31` double  NULL,
+    `1988-12-31` double  NULL,
+    `1989-12-31` double  NULL,
+    `1990-12-31` double  NULL,
+    `1991-12-31` double  NULL,
+    `1992-12-31` double  NULL,
+    `1993-12-31` double  NULL,
+    `1994-12-31` double  NULL,
+    `1995-12-31` double  NULL,
+    `1996-12-31` double  NULL,
+    `1997-12-31` double  NULL,
+    `1998-12-31` double  NULL,
+    `1999-12-31` double  NULL,
+    `2000-12-31` double  NULL,
+    `2001-12-31` double  NULL,
+    `2002-12-31` double  NULL,
+    `2003-12-31` double  NULL,
+    `2004-12-31` double  NULL,
+    `2005-12-31` double  NULL,
+    `2006-12-31` double  NULL,
+    `2007-12-31` double  NULL,
+    `2008-12-31` double  NULL,
+    `2009-12-31` double  NULL,
+    `2010-12-31` double  NULL,
+    `2011-12-31` double  NULL,
+    `2012-12-31` double  NULL,
+    `2013-12-31` double  NULL,
+    `2014-12-31` double  NULL,
+    `2015-12-31` double  NULL,
+    `2016-12-31` double  NULL,
+    `2017-12-31` double  NULL,
+    `2018-12-31` double  NULL,
+    `2019-12-31` double  NULL,
+    `2020-12-31` double  NULL,
+    `Time1` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    """
+    cursor.execute(sql)
+    conn.commit()
+    cursor.close()
+    conn.close()
