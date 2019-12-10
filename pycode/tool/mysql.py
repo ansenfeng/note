@@ -3,6 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import pymysql
 import re
+import json
 # engine = create_engine('mysql+pymysql://root:feanset9@49.235.85.164:3306/economic')#mydb?编码
 # sql="""
 # 	select * from population;
@@ -61,7 +62,8 @@ import re
 # manger =['成都房产经纪', '千城万家', '基业常青', '优铺联行', '金润合房地产', '圣菲房产', '金润合房地产', '千城万家', '金润合房地产', '优铺联行', '优铺联行', '大兴业房地产', '圣菲房产', '圣菲房产', '金润合房地产', '千城万家', '铺天下商业管理', '铺天下商业管理', '臻盛房地产', '盛合宜家', '优铺联行', '优铺联行', '基业常青', '基业常青', '优铺联行', '优铺联行', '优铺联行', '高宅房地产', '优铺联行', '金润合房地产', '玛雅房屋成都总部', '成都房产经纪', '成都房产经纪', '基业常青', '优铺联行', '亿盛源地产', '千城万家'] 
 # urli=['https://cd.58.com/shangpu/39500815273768x.shtml', 'https://cd.58.com/shangpu/39116904061335x.shtml', 'https://cd.58.com/shangpu/39558237077893x.shtml', 'https://cd.58.com/shangpu/39556533928602x.shtml', 'https://cd.58.com/shangpu/39558313590286x.shtml', 'https://cd.58.com/shangpu/39556406071438x.shtml', 'https://cd.58.com/shangpu/39556022226717x.shtml', 'https://cd.58.com/shangpu/39558162081064x.shtml', 'https://cd.58.com/shangpu/39558091177354x.shtml', 'https://cd.58.com/shangpu/39556601303041x.shtml', 'https://cd.58.com/shangpu/39557978390296x.shtml', 'https://cd.58.com/shangpu/39557971032477x.shtml', 'https://cd.58.com/shangpu/39556421569829x.shtml', 'https://cd.58.com/shangpu/39556425396127x.shtml', 'https://cd.58.com/shangpu/39556917632780x.shtml', 'https://cd.58.com/shangpu/39557696514185x.shtml', 'https://cd.58.com/shangpu/39557547500677x.shtml', 'https://cd.58.com/shangpu/39557596465950x.shtml', 'https://cd.58.com/shangpu/39557586289156x.shtml', 'https://cd.58.com/shangpu/39557383468293x.shtml', 'https://cd.58.com/shangpu/39557083587237x.shtml', 'https://cd.58.com/shangpu/39557178785026x.shtml', 'https://cd.58.com/shangpu/39556860820115x.shtml', 'https://cd.58.com/shangpu/39556920555163x.shtml', 'https://cd.58.com/shangpu/39556773702657x.shtml', 'https://cd.58.com/shangpu/39556871680027x.shtml', 'https://cd.58.com/shangpu/39556863775261x.shtml', 'https://cd.58.com/shangpu/39556849557653x.shtml', 'https://cd.58.com/shangpu/39556742189337x.shtml', 'https://cd.58.com/shangpu/39556540943756x.shtml', 'https://cd.58.com/shangpu/39556722734097x.shtml', 'https://cd.58.com/shangpu/39556679639568x.shtml', 'https://cd.58.com/shangpu/39556589628681x.shtml', 'https://cd.58.com/shangpu/39556349618051x.shtml', 'https://cd.58.com/shangpu/39556560315142x.shtml', 'https://cd.58.com/shangpu/39556018328091x.shtml', 'https://cd.58.com/shangpu/39556409304867x.shtml']
 conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='diy',charset='utf8')
-cursor = conn.cursor()
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+# cursor = db.cursor(cursor=pymysql.cursors.DictCursor)
 # sql = """
 # CREATE TABLE USER1 (
 # id INT auto_increment PRIMARY KEY ,
@@ -86,14 +88,33 @@ CREATE TABLE if not exists `beike42`(
 PRIMARY KEY (`id`)
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 """
-a=0
-b=0
-for x in range(1,500):
-    a+=1
-    b+=1
-    sql2="""INSERT INTO  beike42 (name,address)VALUES(%s,%s)"""
-    cursor.execute(sql2,[a,b])
-    conn.commit()
+sql2="""INSERT INTO  beike42 (name,address)VALUES(%s,%s)"""
+sql3=""" select * from test"""
+cursor.execute(sql3)
+
+resp=cursor.fetchall()
+print(len(resp))
+f=json.dumps(resp,ensure_ascii=False)
+print(type(f))
+d={'test1':"1",'test2':'nihao','data':resp}
+e=json.dumps(d,ensure_ascii=False)
+print(type(d),type(e))
+print(e)
+# s =[]
+# b= []
+# c= []
+# d=[]
+# for a in resp:
+# 	s.append(a[1])
+# 	b.append(a[2])
+# 	c.append(a[3])
+# 	d.append(a[0])
+# 	e=json.dumps(a[0])
+# 	print(e)
+# print(len(s),len(b),len(c),len(d))
+# print(type(s),type(b),type(c))
+#print(s,b,c,d,sep='\n')
+conn.commit()
 
 # for title,address,area,price,tm,zhuangtai,manger,url in  zip(title,address,area,price,tm,zhuangtai,manger,urli):
 #     sqlc = "INSERT INTO  58shangpu (name,address,area,price,time,zhuangtai,manger,url) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"

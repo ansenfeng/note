@@ -5,7 +5,34 @@ import pandas as pd
 from sqlalchemy import create_engine
 import pymysql
 import time
+df
 # 注意mysql的保留字add容易错误
+def get(key,keyword):
+    for i in range(1,key):
+        url='https://baike.sogou.com/v6750.htm?fromTitle={}'.format(keyword)
+        headers = {
+            'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36',
+        }
+        res= requests.get(url,headers=headers)
+        resp=res.text
+        htm=etree.HTML(resp)
+       
+        img = htm.xpath('//*[@id="main-content-list"]/div[1]/ul/li/div[1]/div[2]/div[1]/h2/a/text()')
+        tb=htm.xpath('//*[@id="baseInfoCol"]/table')
+        tb1 = pd.read_html(resp)[0]
+        tb2=tb1.drop(index=0)
+        sy=htm.xpath('//*[@id="lemma_pic"]/a/@href')
+        print(keyword)
+        print(sy)
+        # title = htm.xpath('//*[@id="main-content-list"]/div[1]/ul/li/div[1]/div[2]/div[1]/h2/a/text()')
+        # url = htm.xpath('//*[@id="main-content-list"]/div[1]/ul/li/div[1]/div[2]/div[1]/h2/a/@href')
+        # class1=htm.xpath('//*[@id="main-content-list"]/div[1]/ul/li/div[1]/div[2]/div[2]/span[1]/text()')
+        # area =htm.xpath('//*[@id="main-content-list"]/div[1]/ul/li/div[1]/div[2]/div[2]/span[2]/text()')
+        # price=htm.xpath('//*[@id="main-content-list"]/div[1]/ul/li/div[2]/p[1]/text()')
+        # time =htm.xpath('//*[@id="main-content-list"]/div[1]/ul/li/div[2]/p[2]/text()')
+        # engine = create_engine('mysql+pymysql://root:123456@127.0.0.1:3306/diy?charset=utf8')#mydb?编码
+        # df = pd.DataFrame({'name':title,'class':class1,'area':area,'price':price,'time':time,'url':url})
+        # df.to_sql('liebiaowang', engine,if_exists='append')
 def get58(key):
     keya=0#计页数
     for i in range (1,key):
@@ -41,42 +68,24 @@ def get58(key):
         tm=[]#转换今天为日期
         for x in time1:
             if str(x)=='今天':
-                a='11-09'
+                a='09-21'
                 tm.append(a)
             else:
                 tm.append(x)
         print(len(title),len(urli),len(address),len(dtile),len(zhuangtai),len(pr),len(area),len(tm))
         print(keya)
         for title,address,area,price,tm,zhuangtai,manger,url in  zip(title,address,area,pr,tm,zhuangtai,manger,urli):
-            sqlc = "INSERT INTO  58_shangpu1109 (name,address,area,price,time,zhuangtai,manger,url) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
+            sqlc = "INSERT INTO  58shangpu2 (name,address,area,price,time,zhuangtai,manger,url) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
             cursor.execute(sqlc,[title,address,area,price,tm,zhuangtai,manger,url])
             conn.commit()
         time.sleep(1)
         keya+=1
-def creattable():
-    sql ="""
-    CREATE TABLE if not exists `58_shangpu1109`(
-    `id`    INT UNSIGNED AUTO_INCREMENT,
-    `title`    VARCHAR(255)  NULL,
-    `name` VARCHAR(255)  NULL,
-    `address`    VARCHAR(255)  NULL,
-    `area` VARCHAR(255)  NULL,
-    `price` VARCHAR(255)  NULL,
-    `time` VARCHAR(255)  NULL,
-    `zhuangtai` VARCHAR(255)  NULL,
-    `manger` VARCHAR(255)  NULL,
-    `url`   VARCHAR(5000)  NULL,
-    `Time1` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    """
-    cursor.execute(sql)
-    conn.commit()    
+        
 
 if __name__ == '__main__':
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='diy',charset='utf8')
-    cursor = conn.cursor()
-    get58(71)
-    #creattable();
-    cursor.close()
-    conn.close()
+    get(2,'中国')
+    # conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='diy',charset='utf8')
+    # cursor = conn.cursor()
+    # get58(2)
+    # cursor.close()
+    # conn.close()

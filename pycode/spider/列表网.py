@@ -6,7 +6,9 @@ def get(key):
     for i in range(1,key):
         url='http://chengdu.liebiao.com/shangpu/index{}.html'.format(i)
         headers = {
-            'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36',
+            'Referer': 'https://cd.esf.fang.com/housing/__0_0_0_10000_1_0_0_0/'
+        'Sec-Fetch-Mode': 'no-cors'
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
         }
         res= requests.get(url,headers=headers)
         resp=res.text

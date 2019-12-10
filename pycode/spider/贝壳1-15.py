@@ -8,7 +8,7 @@ import time
 keya = 0
 def get_html(page):
     """获取网站html代码"""
-    url = "https://cd.ke.com/ershoufang/wuhou/pg{}p1//#contentList".format(page)
+    url = "https://cd.ke.com/ershoufang/pg{}co41/".format(page)
     headers = {
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
     }
@@ -50,7 +50,7 @@ def getdata(html):
         print(len(title),len(address),len(area2),len(price1),len(price2),len(ting),len(lv),len(tm2),len(tm),len(urlq))
 
         for title,address,area,price1,price2,ting,tm,urlq in zip (title,address,area2,price1,price2,ting,tm,urlq):
-            sqlc = "INSERT INTO  beike40 (name,address,area,price1,price2,ting,tm,url) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
+            sqlc = "INSERT INTO  beike_1_15 (name,address,area,price1,price2,ting,tm,url) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
             cursor.execute(sqlc,[title,address,area,price1,price2,ting,tm,urlq])
             conn.commit()
         #     print(title,address,area,price1,price2,ting,lv,tm2,tm,urlq)
@@ -58,7 +58,7 @@ def getdata(html):
 
 def creattable():
     sql ="""
-    CREATE TABLE if not exists `beike100`(
+    CREATE TABLE if not exists `beike_1_15`(
     `id`    INT UNSIGNED AUTO_INCREMENT,
     `name`    VARCHAR(255)  NULL,
     `address` VARCHAR(255)  NULL,
@@ -85,7 +85,7 @@ def jsonc():
             f.write(cont)
 def main():
     all_datas = []
-    for page in range(1,30):
+    for page in range(1,101):
         html = get_html(page)
         getdata(html)
     

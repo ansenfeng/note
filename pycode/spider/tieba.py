@@ -1,11 +1,12 @@
 #-*- coding: utf-8 -*-
 import requests 
-# from bs4 import    BeautifulSoup
 from lxml import etree
 import csv
 import json
 import pandas as pd
 from sqlalchemy import create_engine
+import pyttsx3
+engine = pyttsx3.init()
 def savesql(title,hot,urli):
     engine = create_engine('mysql+pymysql://root:123456@127.0.0.1:3306/diy?charset=utf8')#    mydb?编码
     sql="""charset=utf8
@@ -47,6 +48,7 @@ def get(key):
         # data2=[]
         for re,re2,re3 in zip(title,hot,urli):
             print(re+"\t",re2+"\t",re3)
+            #engine.say(re)发音
         #     # item = [re,url,re2]
         #     # cont = json.dumps(item,ensure_ascii=False)+",\n"
         #     # with open("txt4.json","a",encoding="utf-8") as f:
@@ -54,3 +56,4 @@ def get(key):
         # #print(data2)
 if __name__ == '__main__':
     get('历史')
+    engine.runAndWait()
