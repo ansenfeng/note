@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	   <title>表格1</title>
+     <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="js/dataTables.bootstrap.css"> -->
+
+    <script type="text/javascript" language="javascript" src="/static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/dataTables.bootstrap.js"></script>
+<script>
+
+
+function setupData() {
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "search": {
+                "regex": true
+              },
+            "ajax": {
+                // "url": "static/objects2.txt", // This works for a static file
+                "url": "/index_get_data3", // This now also works
+                "dataType": "json",
+                "dataSrc": "data",
+                "contentType":"application/json"
+            },
+
+            "columns": [
+                {"data": "name"},
+                {"data": "price1"},
+                {"data": "lu"},
+                {"data": "tm"},
+                {"data": "esf_nums"},
+                {"data": "zu_nums"},
+                {"data": "price2"},
+                {"data": "tm2"}
+                //{"data": "url"}                
+            ],
+              "aoColumnDefs": [
+      //{ "bVisible": false, "aTargets": [ 0 ] },    //隐藏第一列 第一列的值用于编辑或者删除
+      //{ "bSortable": false, "aTargets": [ 1 ] },    //第二列为num列
+      { "bSortable": false, "aTargets": [0],
+          "mRender":function(data,type,full) {
+              return "<a href='"+full.url+"'>"+ full.name+"</a>";
+          }
+      },    //第三列为area
+      //{ "bSortable": true, "aTargets": [ 3 ] },   //第四列允许排序
+  ]
+        });
+    });
+}
+
+$( window ).on( "load", setupData );
+</script>
+
+
+<style type="text/css">
+body{
+    font-size: 18px;
+}
+h1{
+    text-align: center;
+}
+.dataTable{ 
+    
+    margin:0 auto;
+
+}
+body{
+    background: #fff;
+}
+
+
+table th{background:gray;text-align: center;}
+table tr:nth-child(odd){background:#F4F4F4;}
+table td:nth-child(even){color:#C00;}
+/*table tr:nth-child(5){background:#73B1E0;color:#FFF;}*/
+table tr:hover{background:#73B1E0;color:#FFF;}
+
+.dataTable td {  word-break: keep-all;padding:5px;/*必须*/ }
+.dataTable td:first-child {width:12%;}
+.dataTable td:nth-child(2){ width:10%;}
+.dataTable td:nth-child(3){ width:5%;}
+.dataTable td:nth-child(5){ width:5%;}
+.dataTable td:nth-child(4){ width:5%;}
+.dataTable td:nth-child(6){ width:8%;}
+.dataTable td:nth-child(7){ width:8%;}
+.dataTable td:last-child{width:10%;}
+.red{
+    color: green;
+}
+/*.l1{
+    width:10%;
+background: blue;
+}*/
+/*.l2{
+    width: 20%;
+}
+.l3{
+    width: 10%;
+}*/
+</style>
+
+
+</head>
+<body>
+2019年8月24日
+<table id="example" class="display" cellspacing="0" width="1800">
+    <thead>
+        <tr>
+            <th class="l1" >标题</th>
+            <th class="l2">市区</th>
+            <th class="l3">小区</th>
+            <th class="l4" >类型</th>
+            <th class="l5">在售</th>
+            <th class="l6" >在租</th>
+            <th class="l6" >单价</th>
+            <th class="l7">建造时间</th>
+            <!-- <th class="l8">url</th> -->
+           
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th class="l1" >标题</th>
+            <th class="l2">市区</th>
+            <th class="l3">小区</th>
+            <th class="l4" >类型</th>
+            <th class="l5">在售</th>
+            <th class="l6" >在租</th>
+            <th class="l6" >单价</th>
+            <th class="l7">建造时间</th>
+            <!-- <th>Position</th> -->
+        </tr>
+    </tfoot>
+</table>
+
+</body>
+</html>
