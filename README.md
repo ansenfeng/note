@@ -1,6 +1,10 @@
 # note
 python学习笔记</br>
-
+#  mac 自启动
+	crontab -e 编辑
+	crontab -l 查看列表
+	文件目录 /var/mail/anson
+	 快捷键 i 编辑 esc + ：wq 保存
 # 正则表达式
 	import re #模块
 	
