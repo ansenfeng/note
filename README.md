@@ -42,6 +42,10 @@ python学习笔记</br>
 	 	print("网站名：{}, 地址 {}".format("菜鸟教程", "www.runoob.com"))
 	 	等价   
 		format 还可以使用字典和列表。
+	import
+		import xx
+		xx.yy();运行
+		  设置自动加载
 	列出目录列表  
 	 	import os
 	 	print(os.listdir(r'/Library/WebServer/Documents/07'))
