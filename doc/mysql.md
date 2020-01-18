@@ -68,7 +68,15 @@ ps -ef|grep mysql
     4、查看指定数据库的某个表的大小
     比如查看数据库home中 members 表的大小
     select concat(round(sum(data_length/1024/1024),2),'MB') as data from tables where table_schema='home' and   table_name='members';
-
+# 详细信息，各个数据库大小
+    select
+    table_schema as '数据库',
+    sum(table_rows) as '记录数',
+    sum(truncate(data_length/1024/1024, 2)) as '数据容量(MB)',
+    sum(truncate(index_length/1024/1024, 2)) as '索引容量(MB)'
+    from information_schema.tables
+    group by table_schema
+    order by sum(data_length) desc, sum(index_length) desc;
 # import pymysql
     conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='diy',charset='utf8')
     cursor = conn.cursor()
